@@ -20,7 +20,6 @@
         </header>
         <section>
             <div class="container">
-            {% for post in posts %}
                 <div class="entry-list" single>
                     <article>
                         <h1>{{ post.title }}</h1>
@@ -28,7 +27,6 @@
 						<p class="post-body">{{ post.body }}</p>
 						<p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
 					</div>
-                    {% endfor %}
                 </div>
             </div>
         </section>
