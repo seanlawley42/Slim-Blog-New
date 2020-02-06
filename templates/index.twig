@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SparkBlog</title>
+        <link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Noto+Sans:700,400' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/site.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="site-header">
+                    <a class="logo" href="index.html">SparkBlog</a>
+                    <a class="new-entry button button-round" href="new.html"><i class="material-icons">create</i></a>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="container">
+                <div class="entry-list" single>
+                    <article>
+                        <h1>{{ post.title }}</h1>
+                        <div class="entry">
+						<p class="post-body">{{ post.body }}</p>
+						<p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
+					</div>
+                </div>
+            </div>
+        </section>
+        <section class="entry-comments">
+            <div class="container">
+                    <h2>Comments</h2>
+                    <div class="comment">
+						{# Display Comments #}
+					{% if comments|length > 1 %}
+                        {% for item in comments %}
+                        	<strong>{{item.name}}</strong>
+                        	<p> {{ item.body }} </p>
+							<hr>
+						{% endfor %}
+					{% else %}
+					{% for item in comments %}
+						<strong>{{item.name}}</strong>
+						<p> {{ item.body }} </p>
+					{% endfor %}
+				{% endif %}
+                    </div>
+                    <div class="new-comment">
+						<form action="/post/{{ post.id }}" method="POST">
+							<label for="name"> Name</label>
+							<input type="text" name="name"><br>
+							<label for="date"></label>
+							<input type="hidden" name="date" value={{ "now"|date("d-m-Y") }}><br>
+							<label for="comment">Comment</label>
+							<textarea rows="5" name="comment"></textarea>
+							<input type="submit" value="Post Comment" class="button">
+						</form>
+						<form action="/delete/{{ post.id}}" method="POST">
+							<input type="submit" value="Delete Post" name="delete" class="button delete-post-button">
+						</form>
+                    </div>
+            </div>
+        </section>
+        <footer>
+            <div>
+                <a href="#">Contact Us</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+                <a href="#">Terms</a>
+            </div>
+        </footer>
+    </body>
+</html>
