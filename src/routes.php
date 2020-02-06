@@ -77,3 +77,17 @@ $app->post('/delete/{id}', function($request, $response, $args) {
   $app->get('/new', function($request, $response) {  
     return $this->view->render($response, 'new.twig');
   });
+
+  // Add New Entry
+  $app->post('/new', function($request, $response, $args) {  
+    // Ready our Post
+    $args = array_merge($args, $request->getParsedBody());
+    $args['date'] = date('m-d-Y');
+
+    if (!empty($args['title']) && !empty($args['date']) &&!empty($args['entry'])){
+      $post = new Posts($this->db);
+      $results = $post->addEntry($args['title'], $args['date'], $args['entry']);
+    }
+    // Return user to Home
+    return $this->response->withStatus(302)->withHeader('Location', '/');
+  });
