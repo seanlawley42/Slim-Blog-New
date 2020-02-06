@@ -42,8 +42,8 @@ $app->get('/post/{id}', function($request, $response, $args) {
     if (!empty($postComment)) {
       $args['comments'] = $postComment;
     }
-    // Display Journal Entry with COmments for user
-  return $this->view->render($response, 'index.twig', $args);
+    // Display Journal Entry with Comments for user
+  return $this->view->render($response, 'detail.twig', $args);
 });
 // Add a Comment to a Journal Entry
 $app->post('/post/{id}', function($request, $response, $args) {
