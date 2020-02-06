@@ -30,12 +30,12 @@
 							<input type="hidden" name="date" value="{{ posts.date }}"><br>
 							<label for="entry">Entry <span class="required-star">*</span></label>
 							<textarea rows="5" name="entry">{{ posts.body }}</textarea>
-                            <input type="submit" value="Save Entry" class="button save-entry-button">
+                            <input type="submit" value="Save" class="button">
 					<a href="/post/{{ posts.id }}" class="button button-secondary">Cancel</a>
 				</form>
 				<br><br>
 				<form action="/delete/{{ posts.id}}" method="POST">
-					<input type="submit" value="Delete Post" name="delete" class="button">
+					<input type="submit" value="Delete" name="delete" class="button">
 				</form>
                 </div>
             </div>
