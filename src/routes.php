@@ -72,8 +72,8 @@ $app->post('/delete/{id}', function($request, $response, $args) {
     // Return user to Home
     return $this->response->withStatus(302)->withHeader('Location', '/');
   });
-  /*
+  
   // New Journal Entry Form
-  $app->get('/post/new', function($request, $response) {  
+  $app->get('/new', function($request, $response) {  
     return $this->view->render($response, 'new.twig');
-  });*/
+  });
