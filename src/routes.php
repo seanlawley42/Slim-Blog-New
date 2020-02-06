@@ -43,7 +43,7 @@ $app->get('/post/{id}', function($request, $response, $args) {
       $args['comments'] = $postComment;
     }
     // Display Journal Entry with COmments for user
-  return $this->view->render($response, 'post.twig', $args);
+  return $this->view->render($response, 'index.twig', $args);
 });
 // Add a Comment to a Journal Entry
 $app->post('/post/{id}', function($request, $response, $args) {
