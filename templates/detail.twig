@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="site-header">
                     <a class="logo" href="/">SparkBlog</a>
-                    <a class="new-entry button button-round" href="new.html"><i class="material-icons">create</i></a>
+                    <a class="new-entry button button-round" href="/new"><i class="material-icons">create</i></a>
                 </div>
             </div>
         </header>
@@ -22,10 +22,10 @@
             <div class="container">
                 <div class="entry-list" single>
                     <article>
-                        <h1>{{ post.title }}</h1>
+                        <h1>{{ posts.title }}</h1>
                         <div class="entry">
-						<p class="post-body">{{ post.body }}</p>
-						<p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
+						<p class="post-body">{{ posts.body }}</p>
+						<p><a class="link" href="/edit/{{ posts.id }}">Edit Entry</a></p>
 					</div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
 				{% endif %}
                     </div>
                     <div class="new-comment">
-						<form action="/post/{{ post.id }}" method="POST">
+						<form action="/post/{{ posts.id }}" method="POST">
 							<label for="name"> Name</label>
 							<input type="text" name="name"><br>
 							<label for="date"></label>
@@ -58,7 +58,7 @@
 							<textarea rows="5" name="comment"></textarea>
 							<input type="submit" value="Post Comment" class="button">
 						</form>
-						<form action="/delete/{{ post.id}}" method="POST">
+						<form action="/delete/{{ posts.id}}" method="POST">
 							<input type="submit" value="Delete Post" name="delete" class="button delete-post-button">
 						</form>
                     </div>
