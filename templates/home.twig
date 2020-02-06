@@ -24,12 +24,12 @@
                 {% for post in posts %}
                   <article>
                     <h2>
-                        <a href="/post/{{ posts.id }}">{{ posts.title }}</a>
+                        <a href="/post/{{ post.id }}">{{ post.title }}</a>
                     </h2>
                     <div class="container">
-                        <a href="/post/{{ posts.id }}" class="button">View post</a>
+                        <a href="/post/{{ post.id }}" class="button">View post</a>
                         
-                        <form method="post" action="/delete/{{ posts.id }}" class="button">
+                        <form method="post" action="/delete/{{ post.id }}" class="button">
                             <input type="submit" value="Delete post" class="button delete-button">
                     </form>
                     </div>
