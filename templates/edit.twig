@@ -22,20 +22,20 @@
             <div class="container">
                 <div class="edit-entry">
                     <h2>Edit Entry</h2>
-                    <form action="/edit/{{ post.id }}" method="POST">
+                    <form action="/edit/{{ posts.id }}" method="POST">
 							<label for="title"> Title <span class="required-star">*</span></label>
-							<input type="text" name="title"  value="{{ post.title }}"><br>
+							<input type="text" name="title"  value="{{ posts.title }}"><br>
 							<label for="date"></label>
 							<label for="date"></label>
-							<input type="hidden" name="date" value="{{ post.date }}"><br>
+							<input type="hidden" name="date" value="{{ posts.date }}"><br>
 							<label for="entry">Entry <span class="required-star">*</span></label>
-							<textarea rows="5" name="entry">{{ post.body }}</textarea>
+							<textarea rows="5" name="entry">{{ posts.body }}</textarea>
                             <input type="submit" value="Save Entry" class="button save-entry-button">
-					<a href="/post/{{ post.id }}" class="button button-secondary">Cancel</a>
+					<a href="/post/{{ posts.id }}" class="button button-secondary">Cancel</a>
 				</form>
 				<br><br>
-				<form action="/delete/{{ post.id}}" method="POST">
-					<input type="submit" value="Delete Post" name="delete" class="button delete-button">
+				<form action="/delete/{{ posts.id}}" method="POST">
+					<input type="submit" value="Delete Post" name="delete" class="button">
 				</form>
                 </div>
             </div>
