@@ -29,7 +29,7 @@
 							<label for="date"></label>
 							<input type="hidden" name="date" value="{{ posts.date }}"><br>
 							<label for="entry">Entry <span class="required-star">*</span></label>
-							<textarea rows="5" name="entry">{{ posts.body }}</textarea>
+							<textarea rows="5" name="body">{{ posts.body }}</textarea>
                             <input type="submit" value="Save" class="button">
 					<a href="/post/{{ posts.id }}" class="button button-secondary">Cancel</a>
 				</form>

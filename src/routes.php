@@ -17,10 +17,10 @@ $app->post('/edit/{id}', function($request, $response, $args) {
     // Ready edited Journal Entry
     $args = array_merge($args, $request->getParsedBody());
   
-    if (!empty($args['title']) && !empty($args['entry'])) {
+    if (!empty($args['title']) && !empty($args['body'])) {
         // Change Journal Entry in database 
         $post = new Posts($this->db);
-        $results = $post->editEntry($args['id'], $args['title'], $args['date'], $args['entry']);
+        $results = $post->editEntry($args['id'], $args['title'], $args['date'], $args['body']);
     }
   // View Edited Journal Entry
   return $this->response->withStatus(302)->withHeader('Location', '/post/'. $args['id'] );
@@ -84,9 +84,9 @@ $app->post('/delete/{id}', function($request, $response, $args) {
     $args = array_merge($args, $request->getParsedBody());
     $args['date'] = date('m-d-Y');
 
-    if (!empty($args['title']) && !empty($args['date']) &&!empty($args['entry'])){
+    if (!empty($args['title']) && !empty($args['date']) &&!empty($args['body'])){
       $post = new Posts($this->db);
-      $results = $post->addEntry($args['title'], $args['date'], $args['entry']);
+      $results = $post->addEntry($args['title'], $args['date'], $args['body']);
     }
     // Return user to Home
     return $this->response->withStatus(302)->withHeader('Location', '/');
