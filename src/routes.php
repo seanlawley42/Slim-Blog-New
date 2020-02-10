@@ -12,6 +12,15 @@ $app->get('/', function($request, $response, $args) {
   // Render
   return $this->view->render($response, 'home.twig', $args);
 });
+// View Edited Journal Entry
+$app->get('/edit/{id}', function($request, $response, $args) {
+  $post = new Posts($this->db);
+  $results = $post->getEntry($args['id']);
+  // Store results:
+  $args['post'] = $results;
+  // Display the entry
+  return $this->view->render($response, 'edit.twig', $args);
+});
 // Edit a Journal Entry
 $app->post('/edit/{id}', function($request, $response, $args) {
     // Ready edited Journal Entry
@@ -22,11 +31,10 @@ $app->post('/edit/{id}', function($request, $response, $args) {
         $post = new Posts($this->db);
         $results = $post->editEntry($args['id'], $args['title'], $args['date'], $args['body']);
     }
-  // View Edited Journal Entry
   return $this->response->withStatus(302)->withHeader('Location', '/post/'. $args['id'] );
 });
 // Review a single Journal Entry
-$app->get('/post/{id}', function($request, $response, $args) {
+$app->get('/detail/post/{id}', function($request, $response, $args) {
      // Get Journal Entry from database 
     $post = new Posts($this->db);
     $results = $post->getEntry($args['id']);
@@ -36,7 +44,7 @@ $app->get('/post/{id}', function($request, $response, $args) {
     
     // Gather Comments
     $comment = new Comments($this->db);
-    $postComment = $comment->getComments($args['id']);
+    $postComment = $comment->getAllComments($args['id']);
     
     // Assign args a key and set it as Entry's Comment
     if (!empty($postComment)) {
@@ -46,17 +54,17 @@ $app->get('/post/{id}', function($request, $response, $args) {
   return $this->view->render($response, 'detail.twig', $args);
 });
 // Add a Comment to a Journal Entry
-$app->post('/post/{id}', function($request, $response, $args) {
+$app->post('detail/post/{id}', function($request, $response, $args) {
     // Ready our Comment
     $args = array_merge($args, $request->getParsedBody());
     $args['date'] = date('m-d-Y');
   
     // Add Comment to database
     $comment = new Comments($this->db);
-    $addComment = $comment->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
+    $addComment = $comment->addComment($args['name'], $args['comment'], $args['postId'], $args['date']);
   
     // Display Comment on Journal Entry
-    return $this->response->withStatus(302)->withHeader('Location', '/post/'. $args['id']);
+    return $this->response->withStatus(302)->withHeader('Location', '/detail/post/'. $args['id']);
   });
   
   // Delete a Journal Entry and related Comments

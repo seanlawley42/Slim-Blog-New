@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>SparkBlog</title>
+        <meta http-equiv="x-ua-compatible">
+        <title>The Hobbit: A Sample</title>
         <link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Noto+Sans:700,400' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="css/normalize.css">
@@ -13,7 +13,7 @@
         <header>
             <div class="container">
                 <div class="site-header">
-                    <a class="logo" href="/">SparkBlog</a>
+                    <a style="color:green" class="logo" href="/">The Hobbit: A Sample</a>
                     <a class="new-entry button button-round" href="/new"><i class="material-icons">create</i></a>
                 </div>
             </div>
@@ -24,12 +24,17 @@
                 {% for post in posts %}
                   <article>
                     <h2>
-                        <a href="/detail/{{ posts.id }}">{{ posts.title }}</a>
+                        <a style="color:green" href="/detail/post/{{ post.id }}">{{ post.title }}</a>
                     </h2>
+                    <h3>
+                    <time datetime="2016-01-31 1:00">{{ item.date|date("d-m-Y") }}</time>
+                    </h3>
+                    <br>
+                    <div>
+                        <a style="color:white" a href="detail/post/{{ post.id }}" class="button">View post</a>
+                    </div>
                     <div class="container">
-                        <a href="/post/{{ posts.id }}" class="button">View post</a>
-                        
-                        <form method="post" action="/delete/{{ posts.id }}" class="button">
+                        <form method="post" action="/delete/{{ post.id }}" class="button">
                             <input type="submit" value="Delete" class="button">
                     </form>
                     </div>
