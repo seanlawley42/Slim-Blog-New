@@ -31,7 +31,7 @@ $app->post('/edit/{id}', function($request, $response, $args) {
         $post = new Posts($this->db);
         $results = $post->editEntry($args['id'], $args['title'], $args['date'], $args['body']);
     }
-  return $this->response->withStatus(302)->withHeader('Location', '/post/'. $args['id'] );
+  return $this->response->withStatus(302)->withHeader('Location', '/detail/post/'. $args['id'] );
 });
 // Review a single Journal Entry
 $app->get('/detail/post/{id}', function($request, $response, $args) {
@@ -54,14 +54,13 @@ $app->get('/detail/post/{id}', function($request, $response, $args) {
   return $this->view->render($response, 'detail.twig', $args);
 });
 // Add a Comment to a Journal Entry
-$app->post('detail/post/{id}', function($request, $response, $args) {
+$app->post('/detail/post/{id}', function($request, $response, $args) {
     // Ready our Comment
     $args = array_merge($args, $request->getParsedBody());
-    $args['date'] = date('m-d-Y');
   
     // Add Comment to database
     $comment = new Comments($this->db);
-    $addComment = $comment->addComment($args['name'], $args['comment'], $args['postId'], $args['date']);
+    $addComment = $comment->addComment($args['name'], $args['body'], $args['id']);
   
     // Display Comment on Journal Entry
     return $this->response->withStatus(302)->withHeader('Location', '/detail/post/'. $args['id']);

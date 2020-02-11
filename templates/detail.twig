@@ -24,7 +24,7 @@
                     <article>
                         <h1>{{ post.title }}</h1>
                         <div>
-                        <time datetime="2016-01-31 1:00">{{ item.date|date("d-m-Y") }}</time>
+                        <time datetime="2016-01-31 1:00">{{ item.date|date("m-d-Y") }}</time>
                         </div>
                         <div class="entry">
 						<p class="post-body">{{ post.body }}</p>
@@ -38,17 +38,10 @@
                     <h2>Comments</h2>
                     <div class="comment">
 						{# Display Comments #}
-					{% if comments|length > 1 %}
+					{% if comments %}
                         {% for item in comments %}
                         	<strong>{{item.name}}</strong>
-                            <time datetime="2016-01-31 1:00">{{ item.date|date("d-m-Y") }}</time>
                         	<p> {{ item.body }} </p>
-							<hr>
-						{% endfor %}
-					{% else %}
-					{% for item in comments %}
-						<strong>{{item.name}}</strong>
-						<p> {{ item.body }} </p>
 					{% endfor %}
 				{% endif %}
                     </div>
@@ -56,10 +49,8 @@
 						<form action="/detail/post/{{ post.id }}" method="POST">
 							<label for="name"> Name</label>
 							<input type="text" name="name"><br>
-							<label for="date"></label>
-							<input type="hidden" name="date" value={{ "now"|date("d-m-Y") }}><br>
-							<label for="comment">Comment</label>
-							<textarea rows="5" name="comment"></textarea>
+							<label for="body">Comment</label>
+							<textarea rows="5" name="body"></textarea>
 							<input type="submit" value="Post Comment" class="button">
 						</form>
 						<form action="/delete/{{ post.id }}" method="POST">

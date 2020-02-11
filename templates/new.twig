@@ -26,7 +26,7 @@
                         <label for="title"> Title <span class="required-star">*</span></label>
                         <input type="text" name="title"><br>
                         <label for="Date"></label>
-                        <input type="hidden" name="date" value={{ "now"|date('d-m-Y') }}>
+                        <input type="hidden" name="date" value={{ "now"|date('m-d-Y') }}>
                         <label for="entry">Entry <span class="required-star">*</span></label>
                         <textarea rows="5" name="body"></textarea>
                         <input type="submit" value="Publish Entry" class="button">

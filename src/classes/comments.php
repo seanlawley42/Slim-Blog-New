@@ -13,13 +13,12 @@ class Comments{
     // Create a Comment
 	public function addComment($name, $comment, $postId, $date) {
         
-        $sql = "INSERT INTO comments (name, body, id, date) VALUES(:name, :body, :postId, :date)"; 
+        $sql = "INSERT INTO comments (name, body, id) VALUES(:name, :body, :postId)"; 
 				
 		$results = $this->db->prepare($sql);
 		$results->bindParam(':name', $name, PDO::PARAM_STR);
 		$results->bindParam(':body', $comment, PDO::PARAM_STR);
 		$results->bindParam(':postId', $postId, PDO::PARAM_INT);
-		$results->bindParam(':date', $date, PDO::PARAM_STR);
 		$results->execute();
 		return true;
     }
