@@ -39,9 +39,9 @@
                     <div class="comment">
 						{# Display Comments #}
 					{% if comments %}
-                        {% for item in comments %}
-                        	<strong>{{item.name}}</strong>
-                        	<p> {{ item.body }} </p>
+                        {% for comment in comments %}
+                        	<strong>{{comment.name}}</strong>
+                        	<p> {{ comment.body }} </p>
 					{% endfor %}
 				{% endif %}
                     </div>
