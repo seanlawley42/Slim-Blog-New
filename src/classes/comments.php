@@ -11,7 +11,7 @@ class Comments{
         $this->db=$db;
     }
     // Create a Comment
-	public function addComment($name, $comment, $postId, $date) {
+	public function addComment($name, $comment, $postId) {
         
         $sql = "INSERT INTO comments (name, body, id) VALUES(:name, :body, :postId)"; 
 				

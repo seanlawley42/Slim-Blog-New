@@ -73,7 +73,7 @@ $app->post('/delete/{id}', function($request, $response, $args) {
     $deleteEntry = $post->deleteEntry($args['id']);
    
     $comment = new Comments($this->db);
-    if (!empty($comment->getComments($args['id']))) {
+    if (!empty($comment->getAllComments($args['id']))) {
       $deleteComment = $comment->deleteComment($args['id']);
     }
     // Return user to Home
