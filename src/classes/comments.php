@@ -13,7 +13,7 @@ class Comments{
     // Create a Comment
 	public function addComment($name, $comment, $postId) {
         
-        $sql = "INSERT INTO comments (name, body, id) VALUES(:name, :body, :postId)"; 
+        $sql = "INSERT INTO comments (name, body, postId) VALUES(:name, :body, :postId)"; 
 				
 		$results = $this->db->prepare($sql);
 		$results->bindParam(':name', $name, PDO::PARAM_STR);
@@ -22,17 +22,10 @@ class Comments{
 		$results->execute();
 		return true;
     }
-    // Remove a Comment 
-	public function deleteComment($postId) {
-        
-        $results = $this->db->prepare("DELETE FROM comments WHERE id = :postId"); 
-		$results->bindParam(':postId', $postId, PDO::PARAM_INT);
-		$results->execute();
-		return true;
-    }
+    
     // Collection of all Comments
 	public function getAllComments($postId) {
-		$sql = "SELECT * FROM comments WHERE id = :postId";
+		$sql = "SELECT * FROM comments WHERE postId = :postId";
  
 			$results = $this->db->prepare($sql); 
 			$results->bindParam(':postId', $postId, PDO::PARAM_INT);
